@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<ImageReader>
+    <!-- Settings for MyApp -->
+    <parameter name="folder" value="./images/"/>
+    <parameter name="extension" value="jpg"/>
+    <parameter name="rect_width" value="80"/>
+    <parameter name="rect_height" value="80"/>
+</ImageReader>

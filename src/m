@@ -1,0 +1,137 @@
+#include "ImageReader.h"
+#include "helpers.h"
+#include "log.h"
+
+#include <boost/lexical_cast.hpp>
+#include <tinyxml.h>
+#include "FloorFinder.h"
+#include "FloorFinder1.h"
+
+
+#define CONFIG_FILE1 "./conf.xml"
+#define ROOT "ImageReader"
+
+
+using namespace std;
+using namespace cv;
+
+/*string fold;
+string ext1;
+
+
+int rH1;
+int rW1;
+
+double cTmax1 = 100;
+
+int c11=1;
+int c21=1;
+
+int i1 = 0;
+int p1=1;
+
+
+void init1()
+{
+	fold = readConfigs(CONFIG_FILE1, ROOT, "folder");
+	ext1 =  readConfigs(CONFIG_FILE1, ROOT, "extension");
+	string sRectHeight =  readConfigs(CONFIG_FILE1, ROOT, "rect_height");
+	string sRectWidth =  readConfigs(CONFIG_FILE1, ROOT, "rect_width");
+	rH1 = atoi(sRectHeight.data());
+	rW1 = atoi(sRectWidth.data());
+	DBG(string("Folder is ")+fold);
+	DBG(string("Extension is ")+ext1);
+}
+
+void trackBarCbHeight1(int param, void *v=0)
+{
+	rH1 = param > 0 ? param : 1;
+}
+
+void trackBarCbWidth1(int param, void *v=0)
+{
+	rW1= param > 0 ? param : 1;
+}
+
+void trackBarCT11(int param, void *v=0)
+{
+	//cT1 = param;// > 0 ? param : 1;
+}
+
+void trackBarCT21(int param, void *v=0)
+{
+	//cT2 = param;// > 0 ? param : 1;
+}
+
+
+
+void createTrackBarsAndWindows1()
+{
+
+	cv::namedWindow("original");
+	cv::namedWindow("floor");
+	cv::namedWindow("canny");
+
+	cv::createTrackbar("height", "original", &p1, 255, trackBarCbHeight1);
+	cv::createTrackbar("width", "original", &p1, 255, trackBarCbWidth1);
+
+	cv::createTrackbar("threshold1", "original", &c11, cTmax1, trackBarCT11);
+	cv::createTrackbar("threshold2", "original", &c21, cTmax1, trackBarCT21);
+}
+
+*/
+
+int main (int argc, char *argv[])
+{
+
+	FloorFinder1* ff = new FloorFinder1(CONFIG_FILE1, 1);
+
+	try
+	{
+		ff->loop();
+			/*createTrackBarsAndWindows1();
+			Mat src;
+			char c = 0;
+			char cl = 0;
+			if (ff->readImage()) {
+				while (c != 27) {
+					src = ff->getImg();
+					if (src.rows > 0) {
+						ff->rectHeight = rH1;
+						ff->rectWidth = rW1;
+						ff->cT1 = c11;
+						ff->cT2 = c21;
+
+						ff->process();
+
+						cv::rectangle(src,
+								cv::Rect(
+										cv::Point((src.cols - rW1 - 1) / 2,
+												src.rows - rH1),
+										cv::Point((src.cols + rW1 - 1) / 2,
+												src.rows)), cv::Scalar(255, 0, 0));
+						cv::imshow("original", ff->out3);
+						cv::imshow("canny", ff->out2);
+						cv::imshow("floor", ff->out1);
+
+						c = cv::waitKey(33);
+					}
+
+					if (c == cl) {
+					} else if (c == ' ') {
+						DBG("Space -- Read next image...");
+						bool f = ff->readImage();
+						if (!f)
+							break;
+					}
+					cl = c;
+				}*/
+	}
+	catch(cv::Exception & e)
+	{
+		DBG(e.msg);
+		DBG(e.err);
+	}
+
+	return 0;
+}
